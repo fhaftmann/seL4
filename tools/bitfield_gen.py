@@ -898,7 +898,7 @@ done'''],
   apply(rule exI, rule conjI[rotated], simp add: h_val_clift')
 
   (* Rewrite struct updates *)
-  apply(simp add: o_def %(name)s_lift_def)
+  apply(simp add: %(name)s_lift_def)
 
   (* Solve bitwise arithmetic *)
   apply ((intro conjI sign_extend_eq)?;
@@ -988,7 +988,7 @@ done'''],
         %(name)s_get_tag \<acute>ret__struct_%(name)s_C = ''' \
      '''scast %(name)s_%(block)s\<rbrace>"''',
         '''  apply (rule allI, rule conseqPre, vcg)
-  apply (clarsimp simp: guard_simps o_def mask_def shift_over_ao_dists)
+  apply (clarsimp simp: guard_simps mask_def shift_over_ao_dists)
   apply (rule context_conjI[THEN iffD1[OF conj_commute]],
          fastforce simp: %(name)s_get_tag_eq_x %(name)s_%(block)s_def
                          mask_def shift_over_ao_dists word_bw_assocs word_ao_dist)
@@ -1020,7 +1020,7 @@ done'''],
  apply(simp add: parent_update_child[OF c_guard_clift]
                  typ_heap_simps c_guard_clift)
 
- apply(simp add: o_def, rule exI, rule conjI[OF _ refl])
+ apply(simp, rule exI, rule conjI[OF _ refl])
 
  apply(simp add: %(name)s_get_tag_def %(name)s_tag_defs
                  guard_simps mask_shift_simps)
@@ -1045,7 +1045,7 @@ done
                    %(name)s_tag_defs[THEN tag_eq_to_tag_masked_eq])?
   apply (simp add: parent_update_child[OF c_guard_clift]
                    typ_heap_simps c_guard_clift)
-  apply (simp add: o_def %(name)s_%(block)s_lift_def)
+  apply (simp add: %(name)s_%(block)s_lift_def)
   apply (simp only: %(name)s_lift_%(block)s cong: rev_conj_cong)
   apply (rule exI, rule conjI[rotated], rule conjI[OF _ refl])
    apply (simp_all add: %(name)s_get_tag_eq_x %(name)s_tag_defs mask_shift_simps)
@@ -1068,14 +1068,14 @@ done
  apply(clarsimp simp:guard_simps)
  apply(simp add:%(name)s_%(block)s_lift_def)
  apply(subst %(name)s_lift_%(block)s)
-  apply(simp add:o_def
+  apply(simp add:
                  %(name)s_get_tag_def
                  %(name)s_%(block)s_def
                  mask_def
                  word_size
                  shift_over_ao_dists)
  apply(subst %(name)s_lift_%(block)s, simp)?
- apply(simp add:o_def
+ apply(simp add:
                 %(name)s_get_tag_def
                 %(name)s_%(block)s_def
                 mask_def
@@ -1161,7 +1161,7 @@ done
                    %(name)s_tag_defs[THEN tag_eq_to_tag_masked_eq])?
   apply (simp add: parent_update_child[OF c_guard_clift]
                    typ_heap_simps c_guard_clift)
-  apply (simp add: o_def %(name)s_%(block)s_lift_def)
+  apply (simp add: %(name)s_%(block)s_lift_def)
   apply (simp only: %(name)s_lift_%(block)s cong: rev_conj_cong)
   apply (rule exI, rule conjI[rotated], rule conjI[OF _ refl])
    apply (simp_all add: %(name)s_get_tag_eq_x %(name)s_tag_defs mask_shift_simps)
